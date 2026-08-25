@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedro Marçal Barcelos | Portfolio</title>
     <style>
-        /* --- GLOBAL STYLES --- */
+        /* --- GITHUB DARK THEME STYLES --- */
         :root {
-            --primary-color: #0369a1; /* A deeper blue suitable for data/science */
-            --text-color: #1f2937;
-            --bg-color: #ffffff;
-            --section-bg: #f3f4f6;
-            --card-bg: #ffffff;
+            --bg-color: #0d1117; /* GitHub Dark Canvas */
+            --section-bg: #161b22; /* GitHub Dark Panel */
+            --card-bg: #21262d; /* GitHub Dark Component */
+            --border-color: #30363d; /* GitHub Dark Border */
+            --text-color: #c9d1d9; /* GitHub Main Text */
+            --sub-text-color: #8b949e; /* GitHub Subdued Text */
+            --link-color: #58a6ff; /* GitHub Blue Link */
+            --primary-color: #238636; /* GitHub Green Button */
+            --primary-hover: #2ea44f; /* GitHub Green Hover */
         }
 
         * {
@@ -36,55 +40,83 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 5%;
-            background-color: var(--bg-color);
+            padding: 1rem 5%;
+            background-color: var(--section-bg);
             position: sticky;
             top: 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-bottom: 1px solid var(--border-color);
             z-index: 1000;
         }
 
+        .nav-logo-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: bold;
-            color: var(--primary-color);
+            color: var(--text-color);
             text-decoration: none;
+        }
+        
+        .logo:hover {
+            color: var(--link-color);
         }
 
         .nav-links a {
-            margin-left: 2rem;
+            margin-left: 1.5rem;
             text-decoration: none;
-            color: var(--text-color);
+            color: var(--sub-text-color);
             font-weight: 500;
+            font-size: 0.9rem;
             transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            color: var(--primary-color);
+            color: var(--text-color);
+        }
+
+        /* Round profile picture placeholder */
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            object-fit: cover;
+            /* Placeholder styling if image fails to load */
+            background-color: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sub-text-color);
+            font-size: 0.8rem;
         }
 
         /* --- HERO SECTION --- */
         #hero {
-            height: 90vh;
+            height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
             padding: 0 10%;
             background-color: var(--section-bg);
+            border-bottom: 1px solid var(--border-color);
         }
 
         #hero h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
-            line-height: 1.2;
+            color: var(--text-color);
         }
 
         #hero p {
             font-size: 1.25rem;
             margin-bottom: 2rem;
-            max-width: 700px;
-            color: #4b5563;
+            max-width: 800px;
+            color: var(--sub-text-color);
         }
 
         .btn {
@@ -92,95 +124,120 @@
             background-color: var(--primary-color);
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
             transition: background-color 0.3s;
+            border: 1px solid rgba(27,31,35,0.15);
         }
 
         .btn:hover {
-            background-color: #0284c7;
+            background-color: var(--primary-hover);
         }
 
         /* --- SECTIONS (General) --- */
         section {
             padding: 5rem 10%;
+            border-bottom: 1px solid var(--border-color);
         }
 
         h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
             text-align: center;
-            color: var(--primary-color);
+            color: var(--text-color);
         }
 
-        /* --- ABOUT & SKILLS --- */
-        .skills-container {
+        /* --- SKILLS/TAGS (Global style used across site) --- */
+        .skills-container, .project-tags {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-top: 2rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            gap: 0.5rem;
         }
 
         .skill-tag {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.5rem 1rem;
+            background-color: #232a35; /* Adjusted dark tag color */
+            color: #58a6ff; /* GitHub Blue tag text */
+            padding: 0.3rem 0.8rem;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 500;
+            border: 1px solid var(--border-color);
         }
 
-        /* --- EXPERIENCE SECTION --- */
+        /* --- EXPERIENCE & PROJECTS SECTIONS --- */
         #experience {
+            background-color: var(--bg-color);
+        }
+        
+        #projects {
             background-color: var(--section-bg);
         }
 
-        .exp-grid {
+        .exp-grid, .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .exp-card {
+        .card {
             background: var(--card-bg);
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-            border-top: 4px solid var(--primary-color);
+            border-radius: 6px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            transition: border-color 0.3s;
         }
 
-        .exp-card:hover {
-            transform: translateY(-5px);
+        .card:hover {
+            border-color: #444c56; /* Subtle hover border light */
         }
 
-        .exp-card h3 {
+        .card h3 {
             margin-bottom: 0.25rem;
-            font-size: 1.3rem;
-        }
-
-        .exp-card .company {
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .exp-card ul {
-            padding-left: 1.25rem;
-            color: #4b5563;
-            font-size: 0.95rem;
+            font-size: 1.2rem;
+            color: var(--text-color);
         }
         
-        .exp-card li {
+        .card .card-link {
+            text-decoration: none;
+            color: var(--link-color);
+        }
+        
+        .card .card-link:hover {
+            text-decoration: underline;
+        }
+
+        .card .subtitle {
+            font-weight: 500;
+            color: var(--sub-text-color);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .card ul {
+            padding-left: 1.25rem;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card li {
             margin-bottom: 0.5rem;
         }
 
+        .card p {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
         /* --- PUBLICATIONS SECTION --- */
+        #publications {
+            background-color: var(--bg-color);
+        }
+
         .pub-list {
             max-width: 900px;
             margin: 0 auto;
@@ -188,63 +245,76 @@
 
         .pub-item {
             margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .pub-item:last-child {
-            border-bottom: none;
+            padding: 1.5rem;
+            background-color: var(--section-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
         }
 
         .pub-title {
             font-weight: bold;
             font-size: 1.1rem;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
         }
 
         .pub-authors {
-            color: #4b5563;
-            font-size: 0.95rem;
+            color: var(--sub-text-color);
+            font-size: 0.9rem;
             margin-bottom: 0.25rem;
         }
 
         .pub-journal {
             font-style: italic;
             font-size: 0.9rem;
-            color: var(--primary-color);
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
         }
 
         .pub-link {
             text-decoration: none;
-            color: #0284c7;
-            font-weight: bold;
+            color: var(--link-color);
+            font-weight: 600;
             font-size: 0.9rem;
+        }
+        
+        .pub-link:hover {
+            text-decoration: underline;
         }
 
         /* --- CONTACT SECTION --- */
         #contact {
             background-color: var(--section-bg);
             text-align: center;
+            padding: 5rem 10%;
         }
 
         .contact-links {
             margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
         }
 
         .contact-links a {
-            margin: 0 1rem;
-            color: var(--primary-color);
+            color: var(--link-color);
             text-decoration: none;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 500;
+        }
+        
+        .contact-links a:hover {
+            text-decoration: underline;
         }
 
         /* --- FOOTER --- */
         footer {
             text-align: center;
             padding: 2rem;
-            background-color: var(--text-color);
-            color: white;
+            background-color: var(--bg-color);
+            color: var(--sub-text-color);
+            font-size: 0.85rem;
         }
 
         /* --- RESPONSIVE DESIGN --- */
@@ -253,7 +323,7 @@
                 display: none; 
             }
             #hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
             section {
                 padding: 3rem 5%;
@@ -265,10 +335,16 @@
 
     <!-- Navigation -->
     <nav>
-        <a href="#" class="logo">Pedro.Barcelos</a>
+        <div class="nav-logo-group">
+            <a href="#" class="logo">Pedro.Barcelos</a>
+            <!-- Round Picture Container -->
+            <!-- REPLACE 'your-image.jpg' WITH YOUR REAL IMAGE PATH -->
+            <img src="my-image.jpg" alt="P" class="avatar">
+        </div>
         <div class="nav-links">
             <a href="#about">About</a>
             <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
             <a href="#publications">Publications</a>
             <a href="#contact">Contact</a>
         </div>
@@ -278,17 +354,17 @@
     <section id="hero">
         <h1>Pedro Marçal Barcelos</h1>
         <p>Data Scientist and Software Developer combining an ongoing PhD in Computer Science with an MBA in Data Science. I build scalable applications, engineer automated data pipelines, and develop advanced machine learning models.</p>
-        <a href="#experience" class="btn">View My Experience</a>
+        <a href="#projects" class="btn">View My GitHub Projects</a>
     </section>
 
-    <!-- About & Skills Section -->
+    <!-- About Section with Skills Tags -->
     <section id="about">
         <h2>Professional Summary</h2>
-        <p style="max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.1rem; color: #4b5563;">
+        <p style="max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.1rem; color: var(--text-color); margin-bottom: 3rem;">
             I have proven expertise in engineering automated data pipelines, developing machine learning models, and deploying scalable web applications using REST APIs, Docker, and Cloud infrastructure. I excel at processing high-dimensional datasets and translating complex technical analyses into actionable business and research solutions.
         </p>
         
-        <div class="skills-container">
+        <div class="skills-container" style="max-width: 800px; margin: 0 auto; justify-content: center;">
             <span class="skill-tag">Python</span>
             <span class="skill-tag">SQL (PostgreSQL)</span>
             <span class="skill-tag">PyTorch</span>
@@ -309,34 +385,79 @@
         <h2>Experience</h2>
         <div class="exp-grid">
             
-            <div class="exp-card">
+            <div class="card">
                 <h3>Software Developer</h3>
-                <div class="company">TreeTech | Apr 2025 – Present</div>
+                <div class="subtitle">TreeTech | Apr 2025 – Present</div>
                 <ul>
-                    <li>Developed and maintained full-stack features for a production web app using Django and PostgreSQL (100+ DAU).</li>
-                    <li>Supervised a team of 3 student developers, organizing Agile workflows and GitHub repositories.</li>
-                    <li>Resolved 15+ critical system bugs, increasing stability and reducing downtime by 50%.</li>
+                    <li>Developed full-stack features using Django/PostgreSQL (100+ DAU).</li>
+                    <li>Supervised student developers, organizing Agile workflows.</li>
+                    <li>Resolved 15+ critical bugs, reducing downtime by 50%.</li>
                 </ul>
             </div>
 
-            <div class="exp-card">
+            <div class="card">
                 <h3>Graduate Research Assistant</h3>
-                <div class="company">PUC-Rio | Mar 2025 – Present</div>
+                <div class="subtitle">PUC-Rio | Mar 2025 – Present</div>
                 <ul>
-                    <li>Developed AI/ML models to classify complex variables, processing 5 TB of data in an HPC environment.</li>
-                    <li>Engineered rigorous statistical pipelines, reducing manual processing time by 70%.</li>
-                    <li>Improved ETL frameworks that integrated 5 different data sources.</li>
+                    <li>Developed AI/ML models in HPC environment, processing 5 TB of data.</li>
+                    <li>Engineered statistical pipelines, reducing manual processing by 70%.</li>
+                    <li>Improved ETL frameworks integrating 5 different data sources.</li>
                 </ul>
             </div>
 
-            <div class="exp-card">
+            <div class="card">
                 <h3>Graduate Research Assistant</h3>
-                <div class="company">University of São Paulo | Apr 2023 – Feb 2025</div>
+                <div class="subtitle">University of São Paulo | Apr 2023 – Feb 2025</div>
                 <ul>
-                    <li>Engineered Python pipelines to clean and process high-throughput big data for over 1,000 genomic samples.</li>
-                    <li>Applied advanced ML techniques and feature engineering to identify 5 critical prognostic markers.</li>
-                    <li>Culminated in a first-author publication in <i>Scientific Reports</i>.</li>
+                    <li>Engineered Python pipelines for big data (1,000+ genomic samples).</li>
+                    <li>Applied advanced ML techniques to identify critical prognostic markers.</li>
+                    <li>Culminated in first-author publication in <i>Scientific Reports</i>.</li>
                 </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Projects Section with Visual Tech Tags -->
+    <section id="projects">
+        <h2>Selected GitHub Projects</h2>
+        <div class="project-grid">
+            
+            <!-- Project 1 -->
+            <div class="card">
+                <h3><a href="https://github.com/pedrombarcelos/pseudogenes" target="_blank" class="card-link">Pseudogenes</a></h3>
+                <div class="subtitle">Nextflow pipeline to identify pseudogenes</div>
+                <p>This project creates a null model for sequence identification, creating a statistical criteria to identify pseudogenes</p>
+                <div class="project-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Nextflow</span>
+                    <span class="skill-tag">BLAST</span>
+                    <span class="skill-tag">FASTA</span>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="card">
+                <h3><a href="https://github.com/pedrombarcelos/delaunay_microambiente" target="_blank" class="card-link">delaunay_microambiente</a></h3>
+                <div class="subtitle">Análise de Microambientes Celulares via Delaunay</div>
+                <p>A complete Python pipeline for the geometric analysis of spatial omics data, utilizing Delaunay triangulation, Alpha-Shape filtering, and Voronoi diagrams to construct neighborhood graphs and quantify cellular microenvironments.</p>
+                <div class="project-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">Numpy</span>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="card">
+                <h3><a href="https://github.com/pedrombarcelos/biomodelml" target="_blank" class="card-link">biomodelml</a></h3>
+                <div class="subtitle">Python package that allows sequence comparrison with images</div>
+                <p>BioModelML is a foundational Python framework that bridges bioinformatics and computer vision. It transforms biological sequences (DNA, RNA, and proteins) into rich, spatially-encoded RGB matrices.</p>
+                <div class="project-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Nextflow</span>
+                    <span class="skill-tag">PyTorch</span>
+                </div>
             </div>
 
         </div>
@@ -368,36 +489,23 @@
                 <a href="https://doi.org/10.1002/jmv.70742" target="_blank" class="pub-link">DOI: 10.1002/jmv.70742</a>
             </div>
 
-            <div class="pub-item">
-                <div class="pub-title">Systems-level transcriptomic analysis reveals synapse-related gene dysregulation in peripheral leukocytes of MDD patients</div>
-                <div class="pub-authors">Adri AS, Nóbile AL, de Albuquerque DG, et al.</div>
-                <div class="pub-journal">Scientific Reports (2026)</div>
-                <a href="https://doi.org/10.1038/s41598-026-39284-y" target="_blank" class="pub-link">DOI: 10.1038/s41598-026-39284-y</a>
-            </div>
-
-            <div class="pub-item">
-                <div class="pub-title">Modulation of neuroimmune cytokine networks by antidepressants: implications in mood regulation</div>
-                <div class="pub-authors">Nava RG, Adri AS, Filgueiras IS, et al.</div>
-                <div class="pub-journal">Translational Psychiatry (2025)</div>
-                <a href="https://doi.org/10.1038/s41398-025-03532-y" target="_blank" class="pub-link">DOI: 10.1038/s41398-025-03532-y</a>
-            </div>
-
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact">
         <h2>Get In Touch</h2>
-        <p>I am always open to discussing research collaborations, data science projects, or software development opportunities.</p>
+        <p style="color: var(--sub-text-color);">Always open to discussing research collaborations, data science projects, or software opportunities.</p>
         <div class="contact-links">
             <a href="mailto:pedrombarcelos73@gmail.com">pedrombarcelos73@gmail.com</a>
             <a href="https://www.linkedin.com/in/pedro-mar%C3%A7al-barcelos-11b497143/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/pedrombarcelos" target="_blank">GitHub Profile</a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Pedro Marçal Barcelos. Hosted on GitHub Pages.</p>
+        <p>&copy; 2026 Pedro Marçal Barcelos. Custom GitHub Dark Theme.</p>
     </footer>
 
 </body>
