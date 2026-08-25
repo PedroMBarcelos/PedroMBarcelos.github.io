@@ -1,10 +1,404 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>My Portfolio</title>
-  </head>
-  <body>
-    <h1>Hello, World!</h1>
-    <p>Welcome to my new portfolio.</p>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Marçal Barcelos | Portfolio</title>
+    <style>
+        /* --- GLOBAL STYLES --- */
+        :root {
+            --primary-color: #0369a1; /* A deeper blue suitable for data/science */
+            --text-color: #1f2937;
+            --bg-color: #ffffff;
+            --section-bg: #f3f4f6;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: var(--bg-color);
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 10%;
+            background-color: var(--section-bg);
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        #hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            color: #4b5563;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0284c7;
+        }
+
+        /* --- SECTIONS (General) --- */
+        section {
+            padding: 5rem 10%;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        /* --- ABOUT & SKILLS --- */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .skill-tag {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* --- EXPERIENCE SECTION --- */
+        #experience {
+            background-color: var(--section-bg);
+        }
+
+        .exp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .exp-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .exp-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .exp-card h3 {
+            margin-bottom: 0.25rem;
+            font-size: 1.3rem;
+        }
+
+        .exp-card .company {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .exp-card ul {
+            padding-left: 1.25rem;
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+        
+        .exp-card li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- PUBLICATIONS SECTION --- */
+        .pub-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pub-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .pub-item:last-child {
+            border-bottom: none;
+        }
+
+        .pub-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .pub-authors {
+            color: #4b5563;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .pub-journal {
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+        }
+
+        .pub-link {
+            text-decoration: none;
+            color: #0284c7;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* --- CONTACT SECTION --- */
+        #contact {
+            background-color: var(--section-bg);
+            text-align: center;
+        }
+
+        .contact-links {
+            margin-top: 2rem;
+        }
+
+        .contact-links a {
+            margin: 0 1rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--text-color);
+            color: white;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; 
+            }
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+            section {
+                padding: 3rem 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">Pedro.Barcelos</a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#publications">Publications</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <h1>Pedro Marçal Barcelos</h1>
+        <p>Data Scientist and Software Developer combining an ongoing PhD in Computer Science with an MBA in Data Science. I build scalable applications, engineer automated data pipelines, and develop advanced machine learning models.</p>
+        <a href="#experience" class="btn">View My Experience</a>
+    </section>
+
+    <!-- About & Skills Section -->
+    <section id="about">
+        <h2>Professional Summary</h2>
+        <p style="max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.1rem; color: #4b5563;">
+            I have proven expertise in engineering automated data pipelines, developing machine learning models, and deploying scalable web applications using REST APIs, Docker, and Cloud infrastructure. I excel at processing high-dimensional datasets and translating complex technical analyses into actionable business and research solutions.
+        </p>
+        
+        <div class="skills-container">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">SQL (PostgreSQL)</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">scikit-learn</span>
+            <span class="skill-tag">pandas & NumPy</span>
+            <span class="skill-tag">R</span>
+            <span class="skill-tag">Django</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">AWS / GCP</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Nextflow</span>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="exp-grid">
+            
+            <div class="exp-card">
+                <h3>Software Developer</h3>
+                <div class="company">TreeTech | Apr 2025 – Present</div>
+                <ul>
+                    <li>Developed and maintained full-stack features for a production web app using Django and PostgreSQL (100+ DAU).</li>
+                    <li>Supervised a team of 3 student developers, organizing Agile workflows and GitHub repositories.</li>
+                    <li>Resolved 15+ critical system bugs, increasing stability and reducing downtime by 50%.</li>
+                </ul>
+            </div>
+
+            <div class="exp-card">
+                <h3>Graduate Research Assistant</h3>
+                <div class="company">PUC-Rio | Mar 2025 – Present</div>
+                <ul>
+                    <li>Developed AI/ML models to classify complex variables, processing 5 TB of data in an HPC environment.</li>
+                    <li>Engineered rigorous statistical pipelines, reducing manual processing time by 70%.</li>
+                    <li>Improved ETL frameworks that integrated 5 different data sources.</li>
+                </ul>
+            </div>
+
+            <div class="exp-card">
+                <h3>Graduate Research Assistant</h3>
+                <div class="company">University of São Paulo | Apr 2023 – Feb 2025</div>
+                <ul>
+                    <li>Engineered Python pipelines to clean and process high-throughput big data for over 1,000 genomic samples.</li>
+                    <li>Applied advanced ML techniques and feature engineering to identify 5 critical prognostic markers.</li>
+                    <li>Culminated in a first-author publication in <i>Scientific Reports</i>.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications">
+        <h2>Selected Publications</h2>
+        <div class="pub-list">
+            
+            <div class="pub-item">
+                <div class="pub-title">Gene regulatory networks analysis for the discovery of prognostic genes in gliomas</div>
+                <div class="pub-authors">Barcelos PM, Filgueiras IS, Nóbile AL, et al.</div>
+                <div class="pub-journal">Scientific Reports (2025)</div>
+                <a href="https://doi.org/10.1038/s41598-025-98542-7" target="_blank" class="pub-link">DOI: 10.1038/s41598-025-98542-7</a>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-title">Dysregulated autoantibodies targeting AGTR1 are associated with the accumulation of COVID-19 symptoms</div>
+                <div class="pub-authors">Fonseca DLM, Jäpel M, Gyamfi MA, et al.</div>
+                <div class="pub-journal">NPJ Systems Biology and Applications (2025)</div>
+                <a href="https://doi.org/10.1038/s41540-025-00488-z" target="_blank" class="pub-link">DOI: 10.1038/s41540-025-00488-z</a>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-title">The Neuroimmunome of Hepatitis Patients Associates With Disease Severity</div>
+                <div class="pub-authors">Nóbile AL, Adri AS, Usuda JN, et al.</div>
+                <div class="pub-journal">Journal of Medical Virology (2025)</div>
+                <a href="https://doi.org/10.1002/jmv.70742" target="_blank" class="pub-link">DOI: 10.1002/jmv.70742</a>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-title">Systems-level transcriptomic analysis reveals synapse-related gene dysregulation in peripheral leukocytes of MDD patients</div>
+                <div class="pub-authors">Adri AS, Nóbile AL, de Albuquerque DG, et al.</div>
+                <div class="pub-journal">Scientific Reports (2026)</div>
+                <a href="https://doi.org/10.1038/s41598-026-39284-y" target="_blank" class="pub-link">DOI: 10.1038/s41598-026-39284-y</a>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-title">Modulation of neuroimmune cytokine networks by antidepressants: implications in mood regulation</div>
+                <div class="pub-authors">Nava RG, Adri AS, Filgueiras IS, et al.</div>
+                <div class="pub-journal">Translational Psychiatry (2025)</div>
+                <a href="https://doi.org/10.1038/s41398-025-03532-y" target="_blank" class="pub-link">DOI: 10.1038/s41398-025-03532-y</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <p>I am always open to discussing research collaborations, data science projects, or software development opportunities.</p>
+        <div class="contact-links">
+            <a href="mailto:pedrombarcelos73@gmail.com">pedrombarcelos73@gmail.com</a>
+            <a href="https://www.linkedin.com/in/pedro-mar%C3%A7al-barcelos-11b497143/" target="_blank">LinkedIn</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Pedro Marçal Barcelos. Hosted on GitHub Pages.</p>
+    </footer>
+
+</body>
 </html>
